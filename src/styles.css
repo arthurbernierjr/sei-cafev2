@@ -130,7 +130,7 @@
   }
   
   input:focus {
-    border-color: var(--orange);
+    color: var(--text-light);
   }
   
   button, a.button {
@@ -167,6 +167,7 @@
     grid-column: span 2;
     margin: 1vmin 0 0;
   }
-  * {
-    background-color: var(--pink-4);
+  
+  input {
+    border-color: var(--green-2);
   }

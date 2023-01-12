@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-
+import styles from './FruitsPage.module.css';
 
 
 export default function FruitsPage ({ user, setUser }){
