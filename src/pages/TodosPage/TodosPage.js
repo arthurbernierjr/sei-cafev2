@@ -5,7 +5,7 @@ import UserLogOut from "../../components/UserLogOut/UserLogOut"
 
 
 
-export default function TodosPage() {
+export default function TodosPage({ user, setUser }) {
     const [todos, setTodos] = useState([])
 
     const addTodo = (e) => {
@@ -48,6 +48,7 @@ export default function TodosPage() {
         editTodoText={editTodoText}
         deleteTodo={deleteTodo}
       />
+       <aside><UserLogOut user={user} setUser={setUser} /></aside>
     </div>
   )
 }

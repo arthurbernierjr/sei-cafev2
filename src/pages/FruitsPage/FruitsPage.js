@@ -1,114 +1,54 @@
-import { useState, useEffect } from 'react'
-import styles from './FruitsPage.module.css';
+import * as fruitsAPI from '../../utilities/fruits-api';
+import { useState, useEffect} from "react"
+import FruitList from "../../components/FruitList/FruitList"
+import UserLogOut from "../../components/UserLogOut/UserLogOut"
 
 
-export default function FruitsPage ({ user, setUser }){
+
+export default function FruitsPage({ user, setUser }) {
     const [fruits, setFruits] = useState([])
-    const [foundFruit, setFoundFruit] = useState(null)
-    const [newFruit, setNewFruit] = useState({
-        name: '',
-        readyToEat: false,
-        color: ''
-    })
-    // index
-    const getFruits = async () => {
-        try {
-            const response = await fetch('/api/fruits')
-            const data = await response.json()
-            setFruits(data)
-        } catch (error) {
-            console.error(error)
-        }
-    }
-    // delete
-    const deleteFruit = async (id) => {
-        try {
-            const response = await fetch(`/api/fruits/${id}`, {
-                method: "DELETE",
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            })
-            const data = await response.json()
-            setFoundFruit(data)
-        } catch (error) {
-            console.error(error)
-        }
-    }
-    // update
-    const updateFruit = async (id, updatedData) => {
-        try {
-            const response = await fetch(`/api/fruits/${id}`, {
-                method: "PUT",
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({...updatedData})
-            })
-            const data = await response.json()
-            setFoundFruit(data)
-        } catch (error) {
-            console.error(error)
-        }
-    }
-    // create
-        const createFruit = async () => {
-            try {
-                const response = await fetch(`/api/fruits`, {
-                    method: "POST",
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({...newFruit})
-                })
-                const data = await response.json()
-                setFoundFruit(data)
-                setNewFruit({
-                    name: '',
-                    readyToEat: false,
-                    color: ''
-                })
-            } catch (error) {
-                console.error(error)
-            }
-        }
 
-    const handleChange = (evt) => {
-        setNewFruit({...newFruit, [evt.target.name]: evt.target.value})
+    const addFruit = (e) => {
+        const newFruit = { text: e.target.value, id: Date.now(), completed: false }
+        setFruits([newFruit, ...fruits])
+        e.target.value = ''
     }
 
-    useEffect(()=> {
-        getFruits()
-    }, [foundFruit])
 
-    return (
-        <>
-            {
-                fruits && fruits.length ? (<ul>
-                    {
-                        fruits.map((fruit) => {
-                            return (
-                                <li key={fruit._id}>
-                                    {fruit.name} is {fruit.color} {fruit.readyToEat? 'and its ready to eat' : 'its not ready to eat'}
-                                    <br/><button onClick={() => deleteFruit(fruit._id)}>Delete This Fruit</button>
-                                </li>
-                            )
-                        })
-                    }
-                </ul>): <h1>No Fruits Yet Add One Below</h1>
-            }
-            {'Name '}<input value={newFruit.name} onChange={handleChange} name="name"></input><br/>
-            {'Color '}<input value={newFruit.color} onChange={handleChange} name="color"></input><br/>
-            {'Ready To Eat '}<input type="checkbox" checked={newFruit.readyToEat} onChange={(evt) => setNewFruit({...newFruit, readyToEat: evt.target.checked })}></input><br/>
-            <button onClick={() => createFruit() }>Create A New Fruit</button>
-            {
-                foundFruit? <div>
-                    <h1>{foundFruit.name}</h1>
-                    <h2>{foundFruit.color}</h2>
-                    <h3>{foundFruit.readyToEat? 'I am ready': 'I am not ready'}</h3>
-                </div>: <>No Fruit in Found Fruit State</>
-            }
-            
-        </>
-    )
+
+    // const wheresAntony = students.findIndex(student => student.name === 'Antony')
+    // students[wheresAntony].grade = 'A+++'
+    const completeFruit = (id, e) => {
+        const fruitsCopy = [...fruits]
+        const indexOfFruit = fruitsCopy.findIndex((i) => i.id === id )
+        fruitsCopy[indexOfFruit].completed = !fruitsCopy[indexOfFruit].completed
+        setFruits(fruitsCopy)
+    }
+    const editFruitText = (id, e) => {
+     const fruitsCopy = [...fruits]
+     const indexOfFruit = fruitsCopy.findIndex((i) => i.id === id)
+     fruitsCopy[indexOfFruit].text = e.target.value
+     setFruits([...fruitsCopy])
+     e.target.value = ""
+   }
+ 
+   const deleteFruit = (id) => {
+     const fruitsCopy = [...fruits]
+     const indexOfFruit = fruitsCopy.findIndex((i) => i.id === id)
+     fruitsCopy.splice(indexOfFruit, 1)
+     setFruits([...fruitsCopy])
+   };
+
+  return (
+    <div className="FruitPage">
+      <FruitList
+     fruits={fruits}
+        addFruit={addFruit}
+        completeFruit={completeFruit}
+        editFruitText={editFruitText}
+        deleteFruit={deleteFruit}
+      />
+      <aside><UserLogOut user={user} setUser={setUser} /></aside>
+    </div>
+  )
 }

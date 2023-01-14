@@ -26,8 +26,8 @@ app.use('/api/users', require('./routes/api/users'))
 const ensureLoggedIn = require('./config/ensureLoggedIn');
 app.use('/api/items', ensureLoggedIn, require('./routes/api/items'));
 app.use('/api/orders', ensureLoggedIn, require('./routes/api/orders'));
-app.use('/api/fruits', require('./routes/api/newFruit'))
-app.use('/api/todos', require('./routes/api/todos'))
+// app.use('/api/fruits', require('./routes/api/newFruit'))
+// app.use('/api/todos', require('./routes/api/todos'))
 
 app.get('/api/test', (req, res) => {
     res.json({'eureka': 'you have found it'})

@@ -13,3 +13,4 @@ router.post('/login', dataController.login, apiController.auth)
 router.get('/check-token', ensureLoggedIn, checkToken)
 
 module.exports = router
+
