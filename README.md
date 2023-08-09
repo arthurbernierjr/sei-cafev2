@@ -1,70 +1,171 @@
-# Getting Started with Create React App
+## Trello [Link](https://trello.com/b/Uj1rbgfT/project-management)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### DataBase Q's:
 
-## Available Scripts
+```js
+(async function() {
 
-In the project directory, you can run:
+  await Category.deleteMany({});
+  const categories = await Category.create([
+    { name: 'Raw Flower', sortOrder: 10 },
+          { name: 'Gummies', sortOrder: 20 },
+          { name: 'Candies', sortOrder: 30 },
+          { name: 'Tinctures-Base Oil', sortOrder: 40 },
+          { name: 'Topicals', sortOrder: 50 },
+          { name: 'Marshmallows', sortOrder: 60 },
+    // {name: 'Sativas', sortOrder: 10},
+    // {name: 'Indicas', sortOrder: 20},
+    // {name: 'Hybrids', sortOrder: 30},
+    
+  ]);
 
-### `npm start`
+  await Item.deleteMany({});
+  const items = await Item.create([
+{name: "R4", emoji: '🤷🏽‍♀️', category: categories[0], price: 12.75 },
+{name: "ACDC", emoji: '🤷🏽‍♀️',category: categories[0],price: 12.75},
+{name: "MW",emoji: '🤷🏽‍♀️',category: categories[0],price: 12.75},
+{name: "DD",emoji: '🤷🏽‍♀️',category: categories[0],price: 12.75},
+{name: "MW/DHDS",emoji: '🤷🏽‍♀️',category: categories[0],price: 12.75},
+{name: "LemD",emoji: '🤷🏽‍♀️',category: categories[0],price: 12.75},
+{name: "Sativa",emoji: '🤷🏽‍♀️',category: categories[0],price: 12.75},
+{name: "Indica",emoji: '🤷🏽‍♀️',category: categories[0],price: 12.75},
+{name: "Cotton candy",emoji: '🤷🏽‍♀️',category: categories[0],price: 12.75},
+{name: "Cheese",emoji: '🤷🏽‍♀️',category: categories[0],price: 12.75},
+{name: "Lilac diesel",emoji: '🤷🏽‍♀️',category: categories[0],price: 12.75},
+{name: "Citral glue",emoji: '🤷🏽‍♀️',category: categories[0],price: 12.75},
+{name: "Sleep CBG",emoji: '❤️',category: categories[1],price: 32.99},
+{name: "Sleep CBD/ACDC",emoji: '❤️',category: categories[1],price: 32.99},
+{name: "Sleep Indica",emoji: '❤️',category: categories[1],price: 32.99},
+{name: "Lift",emoji: '❤️',category: categories[1],price: 32.99},
+{name: "Recovery",emoji: '❤️',category: categories[1],price: 32.99},
+{name: "Daytime CBG",emoji: '❤️',category: categories[1],price: 32.99},
+{name: "CBD/CBN",emoji: '🎂',category: categories[2],price: 32.99},
+{name: "Lemongrass",emoji: '🎂',category: categories[2],price: 32.99},
+{name: "Watermelon",emoji: '🎂',category: categories[2],price: 32.99},
+{name: "Woe",emoji: '🎂',category: categories[2],price: 32.99},
+{name: "CBG",emoji: '🎂',category: categories[2],price: 32.99},
+{name: "Indica glycerin",emoji: '📘',category: categories[3],price: 32.99},
+{name: "Sativa",emoji: '📘',category: categories[3],price: 32.99},
+{name: "Union custom",emoji: '📘',category: categories[3],price: 32.99},
+{name: "CBN MCT",emoji: '📘',category: categories[3],price: 32.99},
+{name: "Chaga",emoji: '📘',category: categories[3],price: 32.99},
+{name: "Garden of Bloom",emoji: '🐈‍⬛',category: categories[4],price: 32.99},
+{name: "Garden of Peace",emoji: '🐈‍⬛',category: categories[4],price: 32.99},
+{name: "Lip Lover",emoji: '🐈‍⬛',category: categories[4],price: 32.99},
+{name: "Massage Oil Cream",emoji: '🐈‍⬛',category: categories[4],price: 32.99},
+{name: "No 10",emoji: '🐈‍⬛',category: categories[4],price: 32.99},
+{name: "Therapeutic Touch",emoji: '🐈‍⬛',category: categories[4],price: 32.99},
+{name: "Soaps",emoji: "each",category: categories[4],price: 32.99},
+{name: "TLC Cream Small",emoji: '🐈‍⬛',category: categories[4],price: 32.99},
+{name: "TLC Cream Large",emoji: '🐈‍⬛',category: categories[4],price: 32.99},
+{name: "Bath Balms sm",emoji: '🐈‍⬛',category: categories[4],price: 32.99},
+{name: "Bath Balms lg",emoji: '🐈‍⬛',category: categories[4],price: 32.99},
+{name: "Indica",emoji: '🐈‍⬛',category: categories[5],price: 32.99},
+{name: "Sative",emoji: '🐈‍⬛',category: categories[5],price: 32.99},
+{name: "CBG",emoji: '🐈‍⬛',category: categories[5],price: 32.99},
+    // {name: 'Red-1', emoji: '🇲🇾 ', category: categories[0], price: 5.95},
+    // {name: 'Red-2', emoji: '🇲🇾 ', category: categories[0], price: 6.95},
+    // {name: 'Red-3', emoji: '🇲🇾 ', category: categories[0], price: 3.95},
+    // {name: 'Orange-1', emoji: '🇲🇾 ', category: categories[1], price: 14.95},
+    // {name: 'Orange-2', emoji: '🇲🇾 ', category: categories[1], price: 13.95},
+    // {name: 'Orange-3', emoji: '🇲🇾 ', category: categories[1], price: 25.95},
+    // {name: 'Yellow-1', emoji: '🇲🇾 ', category: categories[2], price: 1.95},
+    // {name: 'Yellow-2', emoji: '🇲🇾 ', category: categories[2], price: 4.95},
+    // {name: 'Yellow-3', emoji: '🇲🇾 ', category: categories[2], price: 3.95},
+    // {name: 'Yellow-4', emoji: '🇲🇾 ', category: categories[2], price: 7.95},
+    // {name: 'Yellow-5', emoji: '🇲🇾 ', category: categories[2], price: 1.95},
+    // {name: 'Red-1', emoji: '🇲🇾 ', category: categories[0], price: 2.95},
+    // {name: 'Red-2', emoji: '🇲🇾 ', category: categories[0], price: 3.95},
+    // {name: 'Orange-4', emoji: '🇲🇾 ', category: categories[1], price: 1.95},
+    // {name: 'Orange-5', emoji: '🇲🇾 ', category: categories[1], price: 0.95},
+    // {name: 'Orange-6', emoji: '🇲🇾 ', category: categories[1], price: 2.95},
+    // {name: 'Orange-7', emoji: '🇲🇾 ', category: categories[1], price: 3.95},
+    // {name: 'Orange-8', emoji: '🇲🇾 ', category: categories[1], price: 0.95},
+    // {name: 'Red-2', emoji: '🇲🇾 ', category: categories[0], price: 0.95},
+    // {name: 'Red-3', emoji: '🇲🇾 ', category: categories[0], price: 8.95},
+    // {name: 'Orange-8', emoji: '🇲🇾 ', category: categories[1], price: 3.95},
+    // {name: 'Yellow-5', emoji: '🇲🇾 ', category: categories[2], price: 7.95},
+  ]);
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+  console.log(items)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+  process.exit();
 
-### `npm test`
+})();
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+### Heroku [Link](https://shrouded-crag-13588.herokuapp.com/todos)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Toolbox
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+* JavaScript
+* React
+* SCSS
+* MongoDB
+* NodeJS & Express
+* JSONWebToken
+* Heroku
+* Postman
+* BigPoppa Code
+* YouTube-(Traversy Media)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Postman Routes
 
-### `npm run eject`
+**Create account ```POST``` /api/users**
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```
+{
+     "name": "pauline",
+     "email": "pauline@gmail.com",
+     "password": "pauline",
+     "confirm": "pauline"
+}
+```
+**Error 400
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+**```POST``` /api/users/login**
+```
+{
+     "email": "Email@gmail.com",
+     "password": "password"
+}
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+**```GET``` /api/users/check-token**
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Index ```GET``` /api/todos
 
-## Learn More
+```
+{
+     title: {required: true, type: String },
+     completed: { required: true, type: String 
+     }
+```     
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+**Index ```GET``` /api/todos/completed**
+**Delete ```DELETE``` /api/todos/:id**
+**Update ```PUT``` /api/todos/:id**
+**Create ```POST``` /api/todos**
+**Show ```GET``` /api/tods/:id**
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+**Index ```GET``` /api/items**
+**Show ```GET``` /api/items/:id**
 
-### Code Splitting
+**Show ```GET``` /api/orders/cart**
+**Index ```GET``` /api/orders/history**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+**Create cart ```POST``` /api/orders/cart/items/:id**
 
-### Analyzing the Bundle Size
+**Create paid cart ```POST``` /api/orders/cart/checkout**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+**Update ```PUT``` /api/orders/cart/qty**
 
-### Making a Progressive Web App
+**Index ```GET``` /api/fruits**
+**Create ```POST``` /api/fruits**
+**Update ```PUT``` /api/fruits/:id**
+**Show ```GET``` /api/fruits/:id**
+**Delete ```DELETE``` /api/fruits/:id**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
 
-### Advanced Configuration
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

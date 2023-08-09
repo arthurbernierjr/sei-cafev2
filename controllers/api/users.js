@@ -14,6 +14,7 @@ const dataController = {
     try {
       const user = await User.create(req.body)
       console.log(req.body)
+      console.log("Lets Go!!!!!!")
       // token will be a string
       const token = createJWT(user)
       // send back the token as a string
@@ -21,9 +22,10 @@ const dataController = {
       // in the client
       res.locals.data.user = user
       res.locals.data.token = token
+      console.log("")
       next()
     } catch (e) {
-      console.log('you got a database problem')
+      console.log('you got a database problem', e)
       res.status(400).json(e)
     }
   },

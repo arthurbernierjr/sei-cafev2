@@ -1,47 +1,29 @@
-import { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import { Routes, Route, Navigate } from 'react-router-dom';
+import styles from './App.module.scss';
+import { getUser } from '../../utilities/users-service';
 import AuthPage from '../AuthPage/AuthPage';
 import NewOrderPage from '../NewOrderPage/NewOrderPage';
 import OrderHistoryPage from '../OrderHistoryPage/OrderHistoryPage';
-import FruitsPage from '../FruitsPage/FruitsPage';
+
 import NavBar from '../../components/NavBar/NavBar';
-import { Routes, Route} from 'react-router-dom'
+export default function App() {
+  const [user, setUser] = useState(getUser());
 
-function App() {
-  const [state, setState] = useState(null)
-  const [user, setUser ] = useState(null)
-
-  const fetchState = async () => {
-    try {
-      const response = await fetch('/api/test')
-      const data = await response.json()
-      setState(data)
-    } catch (error) {
-      console.error(error)
-    }
-  }
-
-  useEffect(() => {
-    fetchState()
-  }, [])
-  
   return (
-    <main className="App">
-      {
-        user ?
+    <main className={styles.App}>
+      <NavBar />
+      { user ?
         <>
-          <NavBar />
           <Routes>
-            <Route path="/fruits" element={<FruitsPage />} />
-            <Route path="/orders/new" element={<NewOrderPage />} />
-            <Route path="/orders" element={<OrderHistoryPage/>} />
-            <Route path="/" element={<NewOrderPage />}/>
+            <Route path="/orders/new" element={<NewOrderPage user={user} setUser={setUser} />} />
+            <Route path="/orders" element={<OrderHistoryPage user={user} setUser={setUser} />} />
+            <Route path="/*" element={<Navigate to="/orders/new" />} />
           </Routes>
         </>
-         :
-        <AuthPage setUser={setUser}/>
+        :
+        <AuthPage setUser={setUser} />
       }
     </main>
   );
 }
-
-export default App;

@@ -1,14 +1,37 @@
 /* CSS Custom Properties */
 :root {
-    --white: #FFFFFF;
-    --tan-1: #FBF9F6;
-    --tan-2: #E7E2DD;
-    --tan-3: #E2D9D1;
-    --tan-4: #D3C1AE;
-    --orange: #F67F00;
-    --text-light: #968c84;
-    --text-dark: #615954;
-  }
+  --blue-1: #38afb5;
+  --blue-2: #8bcfce;
+  --blue-3: #c7e9e9;
+  --grey: #a9b1b1;
+  --orange: #ca8e3e;
+  --white: #fae8d1;
+  --text-dark:#5d3603;
+  /* --pink-1: rgba(235,210,188,1);
+  --pink-2: rgba(235,210,188,0.85);
+  --pink-3: rgba(235,210,188, 0.75);
+  --pink-4: rgba(235,210,188,0.65);
+  --olive-1: rgba(214,192,117,1);
+  --olive-2: rgba(214,192,117,0.85);
+  --olive-3: rgba(214,192,117,0.75);
+  --olive-4: rgba(214,192,117,0.65);
+  --green-1: rgba(117,158,112,1);
+  --green-2: rgba(117,158,112,0.75);
+  --green-3: rgba(117,158,112,0.65);
+  --green-4: rgba(117,158,112,0.55);
+  --blue-1: rgba(152,173, 195,1);
+  --blue-2: rgba(152,173, 195,0.85);
+  --blue-3: rgba(152,173, 195,0.75);
+  --blue-4: rgba(152,173, 195,0.65);
+  --rose-1: rgba(229,192,145,1);
+  --rose-2: rgba(229,192,145,0.90);
+  --rose-3: rgba(229,192,145,0.75);
+  --rose-4: rgba(229,192,145,0.65);
+  --text-1: rgba(42,39,35,1);
+  --text-2: rgba(42,39,35,0.85);
+  --text-3: rgba(42,39,35,0.65);
+  --text-4: rgba(42,39,35,0.55); */
+}
   
   *, *:before, *:after {
     box-sizing: border-box;
@@ -150,4 +173,7 @@
   button[type="submit"] {
     grid-column: span 2;
     margin: 1vmin 0 0;
+  }
+  * {
+    background-color: var(--pink-4);
   }
